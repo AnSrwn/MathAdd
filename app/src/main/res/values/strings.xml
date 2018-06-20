@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MathAdd</string>
+    <string name="submit">Submit answer</string>
+    <string name="correct">Correct!</string>
+    <string name="tryAgain">Please try again!</string>
+    <string name="restart">Restart</string>
+    <string name="start">Start</string>
+</resources>
