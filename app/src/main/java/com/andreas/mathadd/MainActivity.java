@@ -15,9 +15,6 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     MathData mathData = MathData.getInstance();
 
-    private boolean reStart = false;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,26 +23,30 @@ public class MainActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setMathData(mathData);
 
+        findViewById(R.id.startBackground).bringToFront();
+
         //TODO modify chronometer, so that it also shows milliseconds
         final Chronometer chronometer = findViewById(R.id.chronometer);
         final Button startButton = findViewById(R.id.buttonStart);
+        final Button restartButton = findViewById(R.id.buttonRestart);
         final Button submitButton = findViewById(R.id.buttonSubmit);
-
-        startButton.setText(getResources().getString(R.string.start));
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
+            public void onClick(View v) {
+                findViewById(R.id.startBackground).setVisibility(View.GONE);
+                chronometer.setBase(SystemClock.elapsedRealtime());
+                chronometer.start();
+            }
+        });
+
+        restartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick (View v) {
-                if (!reStart) {
-                    chronometer.setBase(SystemClock.elapsedRealtime());
-                    chronometer.start();
-                    startButton.setText(getResources().getString(R.string.restart));
-                    reStart = true;
-                } else {
-                    mathData.restart();
-                    chronometer.setBase(SystemClock.elapsedRealtime());
-                    chronometer.start();
-                }
+                mathData.restart();
+                chronometer.setBase(SystemClock.elapsedRealtime());
+                chronometer.start();
+
             }
         });
 

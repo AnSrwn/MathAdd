@@ -10,9 +10,26 @@
     </data>
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
+
+        <RelativeLayout
+            android:id="@+id/startBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:elevation="2dp">
+
+            <Button
+                android:id="@+id/buttonStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/start" />
+        </RelativeLayout>
+
 
         <com.andreas.mathadd.Chronometer
             android:id="@+id/chronometer"
@@ -232,16 +249,17 @@
             android:layout_marginStart="57dp"
             android:layout_marginTop="39dp"
             android:text="@string/submit"
-            app:layout_constraintStart_toEndOf="@+id/buttonStart"
+            app:layout_constraintStart_toEndOf="@+id/buttonRestart"
             app:layout_constraintTop_toBottomOf="@+id/buttonResult0" />
 
         <Button
-            android:id="@+id/buttonStart"
+            android:id="@+id/buttonRestart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="39dp"
             android:layout_marginStart="39dp"
             android:layout_marginTop="39dp"
+            android:text="@string/restart"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonResult3" />
 
