@@ -142,9 +142,8 @@ public class MathData extends BaseObservable{
      * Checks if the result input of the user is correct.
      * @return true, if result input is correct, otherwise false
      */
-    //TODO: check carry
     public boolean checkAnswer() {
-        return Arrays.equals(this.result, this.resultSolution);
+        return (Arrays.equals(this.result, this.resultSolution) && Arrays.equals(this.carry, this.carrySolution));
     }
 
     /**
