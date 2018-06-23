@@ -15,6 +15,10 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     MathData mathData = MathData.getInstance();
 
+    private Chronometer chronometer;
+    private Button startButton;
+    private Button restartButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,11 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.startBackground).bringToFront();
 
-        //TODO modify chronometer, so that it also shows milliseconds
-        final Chronometer chronometer = findViewById(R.id.chronometer);
-        final Button startButton = findViewById(R.id.buttonStart);
-        final Button restartButton = findViewById(R.id.buttonRestart);
-        final Button submitButton = findViewById(R.id.buttonSubmit);
+        chronometer = findViewById(R.id.chronometer);
+        startButton = findViewById(R.id.buttonStart);
+        restartButton = findViewById(R.id.buttonRestart);
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,19 +51,25 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
 
-        submitButton.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick (View v) {
-                if(mathData.checkAnswer()) {
-                    chronometer.stop();
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.correct),
-                            Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.tryAgain),
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        }));
+    public void onCarryClick(View v) {
+        int index = Integer.parseInt(v.getTag().toString());
+        mathData.setCarry(index);
+        this.checkAnswer();
+    }
+
+    public void onResultClick(View v) {
+        int index = Integer.parseInt(v.getTag().toString());
+        mathData.setResult(index);
+        this.checkAnswer();
+    }
+
+    public void checkAnswer() {
+        if(mathData.checkAnswer()) {
+            chronometer.stop();
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.correct),
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 }

@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="@string/start" />
+                android:text="@string/start"/>
         </RelativeLayout>
 
 
@@ -141,7 +141,8 @@
             android:layout_marginStart="28dp"
             android:layout_marginTop="24dp"
             android:backgroundTint="@{mathData.carryColor[0]}"
-            android:onClick="@{() -> mathData.setCarry(0)}"
+            android:onClick="onCarryClick"
+            android:tag="0"
             android:text="@{``+mathData.getCarry[0]}"
             app:layout_constraintStart_toEndOf="@+id/buttonCarry1"
             app:layout_constraintTop_toBottomOf="@+id/textViewNumSecond1" />
@@ -154,7 +155,8 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="44dp"
             android:backgroundTint="@{mathData.carryColor[1]}"
-            android:onClick="@{() -> mathData.setCarry(1)}"
+            android:onClick="onCarryClick"
+            android:tag="1"
             android:text="@{``+mathData.getCarry[1]}"
             app:layout_constraintStart_toEndOf="@+id/buttonCarry2"
             app:layout_constraintTop_toTopOf="@+id/textViewNumSecond2" />
@@ -167,7 +169,8 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="44dp"
             android:backgroundTint="@{mathData.carryColor[2]}"
-            android:onClick="@{() -> mathData.setCarry(2)}"
+            android:onClick="onCarryClick"
+            android:tag="2"
             android:text="@{``+mathData.getCarry[2]}"
             app:layout_constraintStart_toEndOf="@+id/buttonCarry3"
             app:layout_constraintTop_toTopOf="@+id/textViewNumSecond3" />
@@ -178,7 +181,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="240dp"
             android:backgroundTint="@{mathData.carryColor[3]}"
-            android:onClick="@{() -> mathData.setCarry(3)}"
+            android:onClick="onCarryClick"
+            android:tag="3"
             android:text="@{``+mathData.getCarry[3]}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -190,7 +194,8 @@
             android:layout_marginLeft="32dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="112dp"
-            android:onClick="@{() -> mathData.setResult(0)}"
+            android:onClick="onResultClick"
+            android:tag="0"
             android:text="@{``+mathData.getResult[0]}"
             app:layout_constraintStart_toEndOf="@+id/buttonResult1"
             app:layout_constraintTop_toTopOf="@+id/textViewNumSecond0" />
@@ -202,7 +207,8 @@
             android:layout_marginLeft="28dp"
             android:layout_marginStart="28dp"
             android:layout_marginTop="20dp"
-            android:onClick="@{() -> mathData.setResult(1)}"
+            android:onClick="onResultClick"
+            android:tag="1"
             android:text="@{``+mathData.getResult[1]}"
             app:layout_constraintStart_toEndOf="@+id/buttonResult2"
             app:layout_constraintTop_toBottomOf="@+id/buttonCarry0" />
@@ -214,7 +220,8 @@
             android:layout_marginLeft="32dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="20dp"
-            android:onClick="@{() -> mathData.setResult(2)}"
+            android:onClick="onResultClick"
+            android:tag="2"
             android:text="@{``+mathData.getResult[2]}"
             app:layout_constraintStart_toEndOf="@+id/buttonResult3"
             app:layout_constraintTop_toBottomOf="@+id/buttonCarry1" />
@@ -226,7 +233,8 @@
             android:layout_marginLeft="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:onClick="@{() -> mathData.setResult(3)}"
+            android:onClick="onResultClick"
+            android:tag="3"
             android:text="@{``+mathData.getResult[3]}"
             app:layout_constraintStart_toEndOf="@+id/buttonResult4"
             app:layout_constraintTop_toBottomOf="@+id/buttonCarry2" />
@@ -236,21 +244,11 @@
             android:layout_width="39dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:onClick="@{() -> mathData.setResult(4)}"
+            android:onClick="onResultClick"
+            android:tag="4"
             android:text="@{``+mathData.getResult[4]}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonCarry3" />
-
-        <Button
-            android:id="@+id/buttonSubmit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="57dp"
-            android:layout_marginStart="57dp"
-            android:layout_marginTop="39dp"
-            android:text="@string/submit"
-            app:layout_constraintStart_toEndOf="@+id/buttonRestart"
-            app:layout_constraintTop_toBottomOf="@+id/buttonResult0" />
 
         <Button
             android:id="@+id/buttonRestart"
