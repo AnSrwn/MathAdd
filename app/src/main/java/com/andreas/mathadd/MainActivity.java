@@ -1,6 +1,7 @@
 package com.andreas.mathadd;
 
 import android.databinding.DataBindingUtil;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,12 @@ import android.widget.Toast;
 
 import com.andreas.mathadd.databinding.ActivityMainBinding;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
@@ -18,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Chronometer chronometer;
     private Button startButton;
     private Button restartButton;
+    private View.OnLongClickListener longClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +59,41 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        //Setting longClickListeners for the carry and result buttons
+        final Integer[] buttonCarryIds = {R.id.buttonCarry0, R.id.buttonCarry1, R.id.buttonCarry2, R.id.buttonCarry3};
+        Integer[] buttonResultIds = {R.id.buttonResult0, R.id.buttonResult1, R.id.buttonResult2, R.id.buttonResult3, R.id.buttonResult4};
+
+        longClickListener = new View.OnLongClickListener() {
+            public boolean onLongClick(final View v) {
+                final Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        if(v.isPressed()) {
+                            if(Arrays.asList(buttonCarryIds).contains(new Integer(v.getId()))) {
+                                mathData.setCarry(Integer.parseInt(v.getTag().toString()));
+                            } else {
+                                mathData.setResult(Integer.parseInt(v.getTag().toString()));
+                            }
+                        }
+                        else
+                            timer.cancel();
+                    }
+                },100,200);
+                return true;
+            }
+        };
+
+        for (int buttonCarryId : buttonCarryIds) {
+            findViewById(buttonCarryId).setOnLongClickListener(longClickListener);
+        }
+
+        for (Integer buttonResultId : buttonResultIds) {
+            findViewById(buttonResultId).setOnLongClickListener(longClickListener);
+        }
+
+
     }
 
     public void onCarryClick(View v) {
@@ -58,6 +101,8 @@ public class MainActivity extends AppCompatActivity {
         mathData.setCarry(index);
         this.checkAnswer();
     }
+
+
 
     public void onResultClick(View v) {
         int index = Integer.parseInt(v.getTag().toString());
