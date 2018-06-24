@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         longClickListener = new View.OnLongClickListener() {
             public boolean onLongClick(final View v) {
                 final int index = Integer.parseInt(v.getTag().toString());
-                findViewById(R.id.textViewPopup).setVisibility(View.VISIBLE);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -77,10 +76,12 @@ public class MainActivity extends AppCompatActivity {
                             if(Arrays.asList(buttonCarryIds).contains(new Integer(v.getId()))) {
                                 mathData.setCarry(index);
                                 mathData.setPopupNum(mathData.getCarry()[index]);
+
                             } else {
                                 mathData.setResult(index);
                                 mathData.setPopupNum(mathData.getResult()[index]);
                             }
+                            findViewById(R.id.textViewPopup).setVisibility(View.VISIBLE);
                             handler.postDelayed(this, 200);
                         }
                         else {
