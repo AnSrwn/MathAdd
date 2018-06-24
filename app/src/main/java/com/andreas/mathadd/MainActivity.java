@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private Handler handler = new Handler();
     private TextView popupNumber;
 
+    //TODO put everything in onStart()
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

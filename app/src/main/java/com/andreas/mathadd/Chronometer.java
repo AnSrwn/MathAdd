@@ -1,5 +1,7 @@
 package com.andreas.mathadd;
 
+//TODO make it my own, so that copy and paste is not obvious
+
 /*
  * The Android chronometer widget revised so as to count milliseconds
  */

@@ -133,6 +133,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textViewNumFirst3" />
 
+        <View
+            android:id="@+id/dividingLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNumSecond3"/>
+
         <Button
             android:id="@+id/buttonCarry0"
             android:layout_width="39dp"
