@@ -7,15 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andreas.mathadd.databinding.ActivityMainBinding;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private Button startButton;
     private Button restartButton;
     private View.OnLongClickListener longClickListener;
+    private Handler handler = new Handler();
+    private TextView popupNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
         chronometer = findViewById(R.id.chronometer);
         startButton = findViewById(R.id.buttonStart);
         restartButton = findViewById(R.id.buttonRestart);
+        popupNumber = findViewById(R.id.textViewPopup);
+
+        popupNumber.setVisibility(View.GONE);
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,21 +68,29 @@ public class MainActivity extends AppCompatActivity {
 
         longClickListener = new View.OnLongClickListener() {
             public boolean onLongClick(final View v) {
-                final Timer timer = new Timer();
-                timer.schedule(new TimerTask() {
+                final int index = Integer.parseInt(v.getTag().toString());
+                findViewById(R.id.textViewPopup).setVisibility(View.VISIBLE);
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         if(v.isPressed()) {
                             if(Arrays.asList(buttonCarryIds).contains(new Integer(v.getId()))) {
-                                mathData.setCarry(Integer.parseInt(v.getTag().toString()));
+                                mathData.setCarry(index);
+                                mathData.setPopupNum(mathData.getCarry()[index]);
                             } else {
-                                mathData.setResult(Integer.parseInt(v.getTag().toString()));
+                                mathData.setResult(index);
+                                mathData.setPopupNum(mathData.getResult()[index]);
                             }
+                            handler.postDelayed(this, 200);
                         }
-                        else
-                            timer.cancel();
+                        else {
+                            findViewById(R.id.textViewPopup).setVisibility(View.GONE);
+                            MainActivity.this.checkAnswer();
+
+                            handler.removeCallbacks(this);
+                        }
                     }
-                },100,200);
+                },  100);
                 return true;
             }
         };

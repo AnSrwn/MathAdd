@@ -22,6 +22,7 @@ public class MathData extends BaseObservable{
     private int[] resultSolution = new int[5]; //calculated correct solution
 
     private int[] carryColor = new int[4]; //color of the carry buttons
+    private int popupNum;
 
     private static final MathData ourInstance = new MathData();
     public static MathData getInstance() {
@@ -33,6 +34,16 @@ public class MathData extends BaseObservable{
         this.setNum(secondNum);
         this.setSolution();
         this.checkColor();
+        this.setPopupNum(0);
+    }
+
+    @Bindable
+    public int getPopupNum() {
+        return this.popupNum;
+    }
+
+    public void setPopupNum(int num) {
+        this.popupNum = num;
     }
 
     @Bindable
