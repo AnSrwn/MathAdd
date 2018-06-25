@@ -31,6 +31,10 @@ public class HighScoreData extends BaseObservable {
         }
     }
 
+    public void setHighScore(ArrayList<HighScoreItem> highScore) {
+        this.highScore = new ArrayList<HighScoreItem>(highScore);
+    }
+
     public boolean timeIsFastest(String newTime) {
         int[] givenTime = new int[3]; //for the time format 00:00:00
         int[] timeInHighScore = new int[3];

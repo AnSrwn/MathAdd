@@ -1,9 +1,11 @@
 package com.andreas.mathadd;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andreas.mathadd.databinding.ActivityGameBinding;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class GameActivity extends AppCompatActivity {
@@ -30,7 +38,6 @@ public class GameActivity extends AppCompatActivity {
     private Handler handler = new Handler();
     private TextView popupNumber;
 
-    //TODO put everything in onStart()
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +50,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
 
         chronometer = findViewById(R.id.chronometer);
         restartButton = findViewById(R.id.buttonRestart);
@@ -156,5 +164,20 @@ public class GameActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    //not overriding onStop, because it is not guaranteed to be called, before activity is destroyed
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        //TODO names to constants
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPreferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(highScoreData.getHighScore());
+        editor.putString("highScoreList", json);
+        editor.apply();
+
     }
 }
