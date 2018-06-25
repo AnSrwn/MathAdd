@@ -6,4 +6,7 @@
     <string name="restart">Restart</string>
     <string name="start">Start</string>
     <string name="highScore">High Score</string>
+    <string name="newHighScore">New High Score!</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 </resources>

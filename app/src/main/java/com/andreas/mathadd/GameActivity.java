@@ -1,12 +1,16 @@
 package com.andreas.mathadd;
 
+import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -123,11 +127,34 @@ public class GameActivity extends AppCompatActivity {
             chronometer.stop();
 
             if(highScoreData.timeIsFastest(chronometer.getTextTime())) {
-                highScoreData.setHighScore(new HighScoreItem(chronometer.getTextTime(),"test"));
-            }
 
-            Toast.makeText(getApplicationContext(), getResources().getString(R.string.correct),
-                    Toast.LENGTH_SHORT).show();
+                //code for Dialog is found here:
+                //https://stackoverflow.com/questions/10903754/input-text-dialog-android
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(getResources().getString(R.string.newHighScore));
+
+                final EditText input = new EditText(this);
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+
+                builder.setView(input);
+
+                builder.setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        highScoreData.setHighScore(new HighScoreItem(chronometer.getTextTime(),input.getText().toString()));
+                    }
+                });
+                builder.setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.show();
+            } else {
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.correct),
+                        Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
