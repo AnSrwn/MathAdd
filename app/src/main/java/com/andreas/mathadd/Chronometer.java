@@ -17,6 +17,7 @@ import java.text.DecimalFormat;
 public class Chronometer extends AppCompatTextView {
     @SuppressWarnings("unused")
     private static final String TAG = "Chronometer";
+    private String textTime;
 
     public interface OnChronometerTickListener {
 
@@ -131,6 +132,7 @@ public class Chronometer extends AppCompatTextView {
         text += df.format(milliseconds);  //text += milli.format(milliseconds);
 
         setText(text);
+        this.textTime = text;
     }
 
     private void updateRunning() {
@@ -169,4 +171,7 @@ public class Chronometer extends AppCompatTextView {
         return timeElapsed;
     }
 
+    public String getTextTime() {
+        return textTime;
+    }
 }

@@ -21,21 +21,12 @@ public class HighScore extends AppCompatActivity {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_high_score);
         binding.setHighScoreData(highScoreData);
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
         ListView listView = findViewById(R.id.listView);
-
-        highScoreData.setHighScore(new HighScoreItem("00:3:45", "bla1"));
-        highScoreData.setHighScore(new HighScoreItem("00:3:45", "bla2"));
-        highScoreData.setHighScore(new HighScoreItem("00:3:45", "bla3"));
-        highScoreData.setHighScore(new HighScoreItem("00:3:45", "bla4"));
-        highScoreData.setHighScore(new HighScoreItem("00:3:45", "bla5"));
-        highScoreData.setHighScore(new HighScoreItem("00:3:45", "bla6"));
-        highScoreData.setHighScore(new HighScoreItem("00:3:45", "bla7"));
-        highScoreData.setHighScore(new HighScoreItem("00:3:45", "bla8"));
-        highScoreData.setHighScore(new HighScoreItem("00:3:45", "bla9"));
-        highScoreData.setHighScore(new HighScoreItem("00:3:45", "bla10"));
-        highScoreData.setHighScore(new HighScoreItem("00:3:45", "bla11"));
-        highScoreData.setHighScore(new HighScoreItem("00:3:45", "bla12"));
 
         ArrayList<HighScoreItem> highScore = new ArrayList<>(highScoreData.getHighScore());
 

@@ -18,6 +18,7 @@ public class GameActivity extends AppCompatActivity {
 
     ActivityGameBinding binding;
     MathData mathData = MathData.getInstance();
+    HighScoreData highScoreData = HighScoreData.getInstance();
 
     private Chronometer chronometer;
     private Button restartButton;
@@ -33,12 +34,18 @@ public class GameActivity extends AppCompatActivity {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_game);
         binding.setMathData(mathData);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
         chronometer = findViewById(R.id.chronometer);
         restartButton = findViewById(R.id.buttonRestart);
         popupNumber = findViewById(R.id.textViewPopup);
 
         popupNumber.setVisibility(View.GONE);
+        mathData.restart();
         chronometer.setBase(SystemClock.elapsedRealtime());
         chronometer.start();
 
@@ -114,6 +121,11 @@ public class GameActivity extends AppCompatActivity {
     public void checkAnswer() {
         if(mathData.checkAnswer()) {
             chronometer.stop();
+
+            if(highScoreData.timeIsFastest(chronometer.getTextTime())) {
+                highScoreData.setHighScore(new HighScoreItem(chronometer.getTextTime(),"test"));
+            }
+
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.correct),
                     Toast.LENGTH_SHORT).show();
         }
