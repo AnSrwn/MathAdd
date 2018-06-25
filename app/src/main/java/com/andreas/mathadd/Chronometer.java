@@ -1,11 +1,5 @@
 package com.andreas.mathadd;
 
-//TODO make it my own, so that copy and paste is not obvious
-
-/*
- * The Android chronometer widget revised so as to count milliseconds
- */
-
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
@@ -14,13 +8,12 @@ import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import java.text.DecimalFormat;
 
+//Source for this modified Chronometer class: https://github.com/antoniom/Millisecond-Chronometer
 public class Chronometer extends AppCompatTextView {
-    @SuppressWarnings("unused")
-    private static final String TAG = "Chronometer";
+
     private String textTime;
 
     public interface OnChronometerTickListener {
-
         void onChronometerTick(Chronometer chronometer);
     }
 
@@ -63,15 +56,6 @@ public class Chronometer extends AppCompatTextView {
         return mBase;
     }
 
-    public void setOnChronometerTickListener(
-            OnChronometerTickListener listener) {
-        mOnChronometerTickListener = listener;
-    }
-
-    public OnChronometerTickListener getOnChronometerTickListener() {
-        return mOnChronometerTickListener;
-    }
-
     public void start() {
         mStarted = true;
         updateRunning();
@@ -79,12 +63,6 @@ public class Chronometer extends AppCompatTextView {
 
     public void stop() {
         mStarted = false;
-        updateRunning();
-    }
-
-
-    public void setStarted(boolean started) {
-        mStarted = started;
         updateRunning();
     }
 
@@ -106,7 +84,6 @@ public class Chronometer extends AppCompatTextView {
         timeElapsed = now - mBase;
 
         DecimalFormat df = new DecimalFormat("00");
-        //DecimalFormat milli = new DecimalFormat("000");
 
         int hours = (int)(timeElapsed / (3600 * 1000));
         int remaining = (int)(timeElapsed % (3600 * 1000));
@@ -115,9 +92,7 @@ public class Chronometer extends AppCompatTextView {
         remaining = (int)(remaining % (60 * 1000));
 
         int seconds = (int)(remaining / 1000);
-        remaining = (int)(remaining % (1000));
 
-        //int milliseconds = (int)(((int)timeElapsed % 1000) / 100);
         int milliseconds = (int)(((int)timeElapsed % 1000) / 10);
 
         String text = "";
@@ -128,8 +103,7 @@ public class Chronometer extends AppCompatTextView {
 
         text += df.format(minutes) + ":";
         text += df.format(seconds) + ":";
-        //text += Integer.toString(milliseconds);
-        text += df.format(milliseconds);  //text += milli.format(milliseconds);
+        text += df.format(milliseconds);
 
         setText(text);
         this.textTime = text;
@@ -156,7 +130,7 @@ public class Chronometer extends AppCompatTextView {
                 updateText(SystemClock.elapsedRealtime());
                 dispatchChronometerTick();
                 sendMessageDelayed(Message.obtain(this , TICK_WHAT),
-                        10); //original 100
+                        10);
             }
         }
     };
@@ -165,10 +139,6 @@ public class Chronometer extends AppCompatTextView {
         if (mOnChronometerTickListener != null) {
             mOnChronometerTickListener.onChronometerTick(this);
         }
-    }
-
-    public long getTimeElapsed() {
-        return timeElapsed;
     }
 
     public String getTextTime() {

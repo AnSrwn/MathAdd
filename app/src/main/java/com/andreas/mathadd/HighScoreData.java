@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class HighScoreData extends BaseObservable {
 
-    ArrayList<HighScoreItem> highScore;
+    ArrayList<HighScoreItem> highScore; //stores the ten best times, with the appendant name
 
     private static final HighScoreData ourInstance = new HighScoreData();
     public static HighScoreData getInstance() {
@@ -35,6 +35,15 @@ public class HighScoreData extends BaseObservable {
         this.highScore = new ArrayList<HighScoreItem>(highScore);
     }
 
+    /**
+     * Method checks if the given time is faster than the times in the high score.
+     * If the high score is empty, the given time is added immediately. Otherwise it is
+     * compared to the first (and fastest) time in the high score list.
+     * @param newTime time given in this String format: "00:00:00"
+     * @return returns true if given time is faster than any other time in high score, otherweise
+     * it return s
+     */
+
     public boolean timeIsFastest(String newTime) {
         int[] givenTime = new int[3]; //for the time format 00:00:00
         int[] timeInHighScore = new int[3];
@@ -50,23 +59,25 @@ public class HighScoreData extends BaseObservable {
                 timeInHighScore[i] = Integer.parseInt(((this.highScore.get(0)).getTime().split(":"))[i]);
             }
 
-            //TODO make it nice
-            if(givenTime[0] < timeInHighScore[0]) {
-                return true;
-            } else if(givenTime[1] < timeInHighScore[1]) {
-                return true;
-            } else if (givenTime[2] < timeInHighScore[2]){
+            if(givenTime[0] > timeInHighScore[0]) {
+                return false;
+            } else if (givenTime[0] < timeInHighScore[0]) {
                 return true;
             } else {
-                return false;
+                if(givenTime[1] > timeInHighScore[1]) {
+                    return false;
+                } else if (givenTime[1] < timeInHighScore[1]) {
+                    return true;
+                } else {
+                    if (givenTime[2] < timeInHighScore[2]) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
             }
         } else {
             return true;
         }
-
-
-
-
-
     }
 }

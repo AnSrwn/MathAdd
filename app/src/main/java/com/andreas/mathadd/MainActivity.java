@@ -34,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, HighScore.class);
         MainActivity.this.startActivity(intent);
     }
+
+    /**
+     * Method to load the saved shared preferences for the high score.
+     */
     private void loadData() {
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPreferences", MODE_PRIVATE);
         Gson gson = new Gson();
