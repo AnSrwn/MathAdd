@@ -121,10 +121,10 @@
             android:id="@+id/dividingLine"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="9dp"
             android:background="@android:color/darker_gray"
             app:layout_constraintStart_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewNumSecond3"/>
+            app:layout_constraintTop_toBottomOf="@+id/buttonCarry1" />
 
         <Button
             android:id="@+id/buttonCarry0"
