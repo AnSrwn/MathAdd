@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="mathData"
+            type="com.andreas.mathadd.MathData" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".GameActivity">
+
+        <com.andreas.mathadd.Chronometer
+            android:id="@+id/chronometer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="184dp"
+            android:layout_marginLeft="184dp"
+            android:layout_marginRight="184dp"
+            android:layout_marginStart="184dp"
+            android:layout_marginTop="44dp"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewNumFirst0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="120dp"
+            android:text="@{``+mathData.getFirstNum[0]}"
+            app:layout_constraintStart_toEndOf="@+id/textViewNumFirst1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewNumFirst1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="120dp"
+            android:text="@{``+mathData.getFirstNum[1]}"
+            app:layout_constraintStart_toEndOf="@+id/textViewNumFirst2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewNumFirst2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="120dp"
+            android:text="@{``+mathData.getFirstNum[2]}"
+            app:layout_constraintStart_toEndOf="@+id/textViewNumFirst3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewNumFirst3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="120dp"
+            android:text="@{``+mathData.getFirstNum[3]}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewNumSecond0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="76dp"
+            android:text="@{``+mathData.getSecondNum[0]}"
+            app:layout_constraintStart_toEndOf="@+id/textViewNumSecond1"
+            app:layout_constraintTop_toTopOf="@+id/textViewNumFirst0" />
+
+        <TextView
+            android:id="@+id/textViewNumSecond1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="76dp"
+            android:text="@{``+mathData.getSecondNum[1]}"
+            app:layout_constraintStart_toEndOf="@+id/textViewNumSecond2"
+            app:layout_constraintTop_toTopOf="@+id/textViewNumFirst1" />
+
+        <TextView
+            android:id="@+id/textViewNumSecond2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="76dp"
+            android:text="@{``+mathData.getSecondNum[2]}"
+            app:layout_constraintStart_toEndOf="@+id/textViewNumSecond3"
+            app:layout_constraintTop_toTopOf="@+id/textViewNumFirst2" />
+
+        <TextView
+            android:id="@+id/textViewNumSecond3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="76dp"
+            android:text="@{``+mathData.getSecondNum[3]}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewNumFirst3" />
+
+        <View
+            android:id="@+id/dividingLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNumSecond3"/>
+
+        <Button
+            android:id="@+id/buttonCarry0"
+            android:layout_width="39dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@{mathData.carryColor[0]}"
+            android:onClick="onCarryClick"
+            android:tag="0"
+            android:text="@{``+mathData.getCarry[0]}"
+            app:layout_constraintStart_toEndOf="@+id/buttonCarry1"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNumSecond1" />
+
+        <Button
+            android:id="@+id/buttonCarry1"
+            android:layout_width="39dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="44dp"
+            android:backgroundTint="@{mathData.carryColor[1]}"
+            android:onClick="onCarryClick"
+            android:tag="1"
+            android:text="@{``+mathData.getCarry[1]}"
+            app:layout_constraintStart_toEndOf="@+id/buttonCarry2"
+            app:layout_constraintTop_toTopOf="@+id/textViewNumSecond2" />
+
+        <Button
+            android:id="@+id/buttonCarry2"
+            android:layout_width="39dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="44dp"
+            android:backgroundTint="@{mathData.carryColor[2]}"
+            android:onClick="onCarryClick"
+            android:tag="2"
+            android:text="@{``+mathData.getCarry[2]}"
+            app:layout_constraintStart_toEndOf="@+id/buttonCarry3"
+            app:layout_constraintTop_toTopOf="@+id/textViewNumSecond3" />
+
+        <Button
+            android:id="@+id/buttonCarry3"
+            android:layout_width="39dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="240dp"
+            android:backgroundTint="@{mathData.carryColor[3]}"
+            android:onClick="onCarryClick"
+            android:tag="3"
+            android:text="@{``+mathData.getCarry[3]}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonResult0"
+            android:layout_width="39dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="112dp"
+            android:onClick="onResultClick"
+            android:tag="0"
+            android:text="@{``+mathData.getResult[0]}"
+            app:layout_constraintStart_toEndOf="@+id/buttonResult1"
+            app:layout_constraintTop_toTopOf="@+id/textViewNumSecond0" />
+
+        <Button
+            android:id="@+id/buttonResult1"
+            android:layout_width="39dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="20dp"
+            android:onClick="onResultClick"
+            android:tag="1"
+            android:text="@{``+mathData.getResult[1]}"
+            app:layout_constraintStart_toEndOf="@+id/buttonResult2"
+            app:layout_constraintTop_toBottomOf="@+id/buttonCarry0" />
+
+        <Button
+            android:id="@+id/buttonResult2"
+            android:layout_width="39dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
+            android:onClick="onResultClick"
+            android:tag="2"
+            android:text="@{``+mathData.getResult[2]}"
+            app:layout_constraintStart_toEndOf="@+id/buttonResult3"
+            app:layout_constraintTop_toBottomOf="@+id/buttonCarry1" />
+
+        <Button
+            android:id="@+id/buttonResult3"
+            android:layout_width="39dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:onClick="onResultClick"
+            android:tag="3"
+            android:text="@{``+mathData.getResult[3]}"
+            app:layout_constraintStart_toEndOf="@+id/buttonResult4"
+            app:layout_constraintTop_toBottomOf="@+id/buttonCarry2" />
+
+        <Button
+            android:id="@+id/buttonResult4"
+            android:layout_width="39dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:onClick="onResultClick"
+            android:tag="4"
+            android:text="@{``+mathData.getResult[4]}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonCarry3" />
+
+        <Button
+            android:id="@+id/buttonRestart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="39dp"
+            android:layout_marginStart="39dp"
+            android:layout_marginTop="39dp"
+            android:text="@string/restart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonResult3" />
+
+        <TextView
+            android:id="@+id/textViewPlus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="44dp"
+            android:text="+"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNumFirst3" />
+
+        <TextView
+            android:id="@+id/textViewPopup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="184dp"
+            android:layout_marginLeft="184dp"
+            android:layout_marginRight="184dp"
+            android:layout_marginStart="184dp"
+            android:layout_marginTop="120dp"
+            android:text="@{``+mathData.getPopupNum}"
+            android:textSize="50sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteY="511dp" />
+    </android.support.constraint.ConstraintLayout>
+</layout>
