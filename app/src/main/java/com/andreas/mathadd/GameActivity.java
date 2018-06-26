@@ -157,6 +157,7 @@ public class GameActivity extends AppCompatActivity {
 
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
+        input.setHint(getResources().getString(R.string.yourName));
 
         builder.setView(input);
 

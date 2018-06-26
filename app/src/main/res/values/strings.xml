@@ -9,4 +9,7 @@
     <string name="newHighScore">New High Score!</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+    <string name="yourName">Your Name</string>
+    <string name="noHighScore">Make the first High Score!</string>
+
 </resources>

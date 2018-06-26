@@ -3,6 +3,7 @@ package com.andreas.mathadd;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 
 import com.andreas.mathadd.databinding.ActivityHighScoreBinding;
@@ -21,6 +22,8 @@ public class HighScore extends AppCompatActivity {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_high_score);
         binding.setHighScoreData(highScoreData);
+
+        findViewById(R.id.layoutNoHighScore).setVisibility(View.GONE);
     }
 
     @Override
@@ -29,6 +32,10 @@ public class HighScore extends AppCompatActivity {
         ListView listView = findViewById(R.id.listView);
 
         ArrayList<HighScoreItem> highScore = new ArrayList<>(highScoreData.getHighScore());
+
+        if(highScore.isEmpty()) {
+            findViewById(R.id.layoutNoHighScore).setVisibility(View.VISIBLE);
+        }
 
         HighScoreListAdapter adapter = new HighScoreListAdapter(HighScore.this, R.layout.list_view_item, highScore);
         listView.setAdapter(adapter);
