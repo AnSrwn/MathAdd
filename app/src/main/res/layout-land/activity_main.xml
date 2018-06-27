@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageButton
+        android:id="@+id/buttonStart"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="106dp"
+        android:layout_marginEnd="99dp"
+        android:layout_marginLeft="246dp"
+        android:layout_marginRight="99dp"
+        android:layout_marginStart="246dp"
+        android:layout_marginTop="105dp"
+        android:background="@android:color/transparent"
+        android:onClick="onStartButtonClick"
+        android:src="@drawable/play_button_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonHighScore"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonHighScore"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="87dp"
+        android:layout_marginRight="87dp"
+        android:layout_marginTop="125dp"
+        android:background="@drawable/high_score_button"
+        android:onClick="onHighScoreButtonClick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>
