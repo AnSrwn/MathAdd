@@ -116,7 +116,7 @@ public class Chronometer extends AppCompatTextView {
                 updateText(SystemClock.elapsedRealtime());
                 dispatchChronometerTick();
                 mHandler.sendMessageDelayed(Message.obtain(mHandler,
-                        TICK_WHAT), 10); //original 100
+                        TICK_WHAT), 10);
             } else {
                 mHandler.removeMessages(TICK_WHAT);
             }
