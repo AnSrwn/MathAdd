@@ -1,6 +1,7 @@
 # MathAdd
 
 This application was developed as a project in the subject Mobile Devices. The assignment was to develop an application for Android, in which the user needs to summate two numbers. For this task the user must give the carry and the sum.
+
 In the final version, the application is structured as a game. After starting the game, the user gets two random generated numbers, which he/she needs to summate. Under the two buttons there are buttons for the carry and the final sum. By clicking on a button, the number is increased by one or alternatively continuously, if you do a long click. If the numbers for carry and sum are correct a toast saying “Correct” appears. While playing, a timer measures how fast the user solves the problem. If he/she is faster than the fastest time in the high score, a dialog window appears, in which the user can type in his/her name.
  
 Figure 1 GameActivity
