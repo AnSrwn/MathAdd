@@ -16,3 +16,6 @@ In the MainActivity are only two buttons. One to start a game, which leads to th
 ![2](https://user-images.githubusercontent.com/38131809/51252683-c1e34380-199c-11e9-9801-12aeaadde99f.png)
 
 Figure 2 HighScore
+
+
+More Information: [ProjectReport.pdf](https://github.com/AnSrwn/MathAdd/files/2765061/ProjectReport.pdf)
